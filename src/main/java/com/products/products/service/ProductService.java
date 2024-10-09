@@ -5,6 +5,7 @@ import com.products.products.model.Products;
 import com.products.products.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -15,8 +16,21 @@ public class ProductService implements ProductServiceInterface{
     }
 
     @Override
-    public List<Products> getAllProducts(){
-       return repository.findAll();
+    public  ProductResponse getAllProducts(){
+
+        ProductResponse response =new ProductResponse();
+        try {
+            List <Products> result= repository.findAll();
+            if(!result.isEmpty()){
+                    response.setStatusCode(200);
+                    response.setMessage("all the products");
+                    response.setAllProducts(result);
+            }
+        } catch (Exception e) {
+            response.setStatusCode(500);
+            response.setMessage(e.getMessage());
+        }
+        return response;
     }
 
     @Override
@@ -38,6 +52,8 @@ public class ProductService implements ProductServiceInterface{
                 response.setProducts(productResult);
                 response.setMessage("new product created successfully successfully");
                 response.setStatusCode(200);
+                response.setCreatedOn(LocalDate.now());
+                response.setName(productResult.getProductName());
             }
         } catch (Exception e) {
             response.setStatusCode(500);

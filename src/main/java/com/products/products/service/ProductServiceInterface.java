@@ -6,6 +6,6 @@ import com.products.products.model.Products;
 import java.util.List;
 
 public interface ProductServiceInterface {
-    List<Products> getAllProducts();
+    ProductResponse  getAllProducts();
     ProductResponse createNewProduct(Products products);
 }

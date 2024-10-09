@@ -17,6 +17,10 @@ public class ProductController {
     public ResponseEntity<?> homepage(){
         return ResponseEntity.ok("please log in to access the app");
     }
+    @GetMapping("/all")
+    public  ResponseEntity<ProductResponse> getAllProducts(){
+        return ResponseEntity.ok(service.getAllProducts());
+    }
     @PostMapping("/admin/new/product")
     public ResponseEntity<ProductResponse> createNewProduct(@RequestBody Products products){
         return ResponseEntity.ok(service.createNewProduct(products));
