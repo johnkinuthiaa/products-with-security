@@ -89,6 +89,9 @@ public class ProductService implements ProductServiceInterface{
                     response.setName(productResult.getProductName());
                 }
 
+            }else {
+                response.setMessage("product with id"+id+"was not found");
+                response.setStatusCode(500);
             }
         }catch(Exception e){
             response.setMessage("product with id"+id+"was not found");
@@ -105,11 +108,14 @@ public class ProductService implements ProductServiceInterface{
             List<Products> product =repository.findAll().stream()
                     .filter(products -> products.getProductName().toLowerCase().contains(name.toLowerCase()))
                     .collect(Collectors.toList());
-            if(product !=null){
+            if(!product.isEmpty()){
                 response.setStatusCode(200);
-                response.setMessage("object with name"+name+"was found");
+                response.setMessage("object with name "+name+" was found");
                 response.setAllProducts(product);
                 response.setName(name);
+            }else {
+                response.setStatusCode(500);
+                response.setError("object not found");
             }
         }catch (Exception e){
             response.setStatusCode(500);
@@ -117,4 +123,53 @@ public class ProductService implements ProductServiceInterface{
         }
         return response;
     }
+    @Override
+    public ProductResponse getProductsByCategory(String category){
+        ProductResponse response =new ProductResponse();
+        try {
+            List<Products> productsCategory =repository.findAll().stream()
+                    .filter(products -> products.getCategory().toLowerCase().contains(category.toLowerCase()))
+                    .collect(Collectors.toList());
+            if(!productsCategory.isEmpty()){
+                response.setStatusCode(200);
+                response.setName(category);
+                response.setMessage("products found with "+category+" category");
+
+                response.setAllProducts(productsCategory);
+            }else {
+                response.setStatusCode(500);
+                response.setMessage("no item with "+category+" was found");
+            }
+
+        } catch (Exception e) {
+            response.setStatusCode(500);
+            response.setMessage("no item with "+category+" was found");
+        }
+        return response;
+
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

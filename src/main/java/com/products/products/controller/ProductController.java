@@ -25,6 +25,10 @@ public class ProductController {
     public ResponseEntity<ProductResponse> getProductsByName(@RequestParam String name){
         return ResponseEntity.ok(service.getProductsByName(name));
     }
+    @GetMapping("/get/category")
+    public  ResponseEntity<ProductResponse> getProductsByCategory(@RequestParam String category){
+        return ResponseEntity.ok(service.getProductsByCategory(category));
+    }
     @PostMapping("/admin/new/product")
     public ResponseEntity<ProductResponse> createNewProduct(@RequestBody Products products){
         return ResponseEntity.ok(service.createNewProduct(products));
