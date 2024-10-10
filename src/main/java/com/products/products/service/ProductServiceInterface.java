@@ -11,5 +11,7 @@ public interface ProductServiceInterface {
     ProductResponse updateExistingProduct(Products products,Long id);
     ProductResponse getProductsByName(String name);
     ProductResponse getProductsByCategory(String category);
+    ProductResponse deleteProductsById(Long id);
+    ProductResponse deleteAllProducts();
 
 }
