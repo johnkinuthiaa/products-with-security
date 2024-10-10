@@ -21,9 +21,17 @@ public class ProductController {
     public  ResponseEntity<ProductResponse> getAllProducts(){
         return ResponseEntity.ok(service.getAllProducts());
     }
+    @GetMapping("/get/name")
+    public ResponseEntity<ProductResponse> getProductsByName(@RequestParam String name){
+        return ResponseEntity.ok(service.getProductsByName(name));
+    }
     @PostMapping("/admin/new/product")
     public ResponseEntity<ProductResponse> createNewProduct(@RequestBody Products products){
         return ResponseEntity.ok(service.createNewProduct(products));
+    }
+    @PutMapping("/update/product")
+    public ResponseEntity<ProductResponse> updateExistingProduct(@RequestBody Products products,@RequestParam Long id){
+        return ResponseEntity.ok(service.updateExistingProduct(products,id));
     }
 
 }
