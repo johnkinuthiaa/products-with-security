@@ -37,5 +37,13 @@ public class ProductController {
     public ResponseEntity<ProductResponse> updateExistingProduct(@RequestBody Products products,@RequestParam Long id){
         return ResponseEntity.ok(service.updateExistingProduct(products,id));
     }
+    @DeleteMapping("/delete/id")
+    public ResponseEntity<ProductResponse> deleteProductsById(@RequestParam Long id){
+        return ResponseEntity.ok(service.deleteProductsById(id));
+    }
+    @DeleteMapping("/all/products")
+    public ResponseEntity<ProductResponse> deleteAllProducts(){
+        return ResponseEntity.ok(service.deleteAllProducts());
+    }
 
 }

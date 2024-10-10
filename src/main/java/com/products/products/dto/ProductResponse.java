@@ -16,6 +16,7 @@ public class ProductResponse {
     private String error;
     private String message;
     private LocalDate createdOn;
+    private LocalDate deletedOn;
     private String name;
     private Products products;
     private List<Products> allProducts;
