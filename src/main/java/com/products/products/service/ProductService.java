@@ -115,5 +115,6 @@ public class ProductService implements ProductServiceInterface{
             response.setStatusCode(500);
             response.setError(e.getMessage());
         }
+        return response;
     }
 }
