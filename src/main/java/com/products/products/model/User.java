@@ -8,6 +8,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class User implements UserDetails {
     private String password;
     private boolean enabled;
     private String verificationCode;
-    private LocalDate verificationCodeExpireAt;
+    private LocalDateTime verificationCodeExpireAt;
 
     public User(){}
     public User(String userName,String email,String password){
