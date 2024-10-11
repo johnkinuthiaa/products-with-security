@@ -31,4 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+/products/.env
 .env
+pom.xml
